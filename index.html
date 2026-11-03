@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arch Linux Web Simulator</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 1. Boot screen -->
+<div id="boot" class="screen"></div>
+
+<!-- 2. First-boot setup: choose your name (shown only once) -->
+<div id="setup" class="screen center">
+  <div class="card">
+    <div class="avatar">A</div>
+    <h2>Welcome to Arch Linux</h2>
+    <p>Choose a name for your account.</p>
+    <input id="nameIn" maxlength="20" placeholder="Your name" autocomplete="off">
+    <button id="nameBtn">Continue</button>
+  </div>
+</div>
+
+<!-- 3. Login screen -->
+<div id="login" class="screen center">
+  <div class="card">
+    <div class="avatar" id="loginAvatar">A</div>
+    <h2 id="loginName">user</h2>
+    <input id="pass" type="password" placeholder="Password (anything works)">
+    <button id="loginBtn">Log in</button>
+  </div>
+</div>
+
+<!-- 4. Desktop session -->
+<div id="session" class="screen" hidden>
+
+  <!-- Animated, blurred wallpaper -->
+  <div id="wall">
+    <i></i><i></i><i></i>
+    <svg viewBox="0 0 100 100"><path d="M50 3 L97 97 C80 86 64 79 50 79 C36 79 20 86 3 97 Z M50 30 L72 80 C64 76 57 74 50 74 C43 74 36 76 28 80 Z" fill-rule="evenodd"/></svg>
+  </div>
+
+  <!-- Top panel: menu | open windows | tray, clock, user -->
+  <div id="panel" class="glass">
+    <button id="menuBtn">Arch</button>
+    <div id="tasks"></div>
+    <span id="tray">&#128246; &#128266; &#128267;</span>
+    <span id="clock"></span>
+    <button id="userBtn"></button>
+  </div>
+
+  <!-- Application menu with search -->
+  <div id="menu" class="glass popup">
+    <input id="search" placeholder="Search apps..." autocomplete="off">
+    <div id="appList"></div>
+  </div>
+
+  <!-- User / power menu -->
+  <div id="userMenu" class="glass popup">
+    <div id="doLogout">Log out</div>
+    <div id="doRestart">Restart</div>
+    <div id="doReset">Reset (first boot)</div>
+  </div>
+
+  <!-- Desktop area: icons and windows -->
+  <div id="desktop"></div>
+
+  <!-- Dock -->
+  <div id="dock" class="glass"></div>
+</div>
+
+<!-- Plain scripts (no ES modules) so index.html also works from file:// -->
+<script src="js/fs.js"></script>
+<script src="js/windows.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/apps.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
